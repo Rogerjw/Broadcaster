@@ -1,0 +1,22 @@
+{
+  "name": "broadcaster",
+  "version": "1.0.0",
+  "description": "Corruption is a huge bane to Africa’s development. African countries must develop novel and localized solutions that will curb this menace, hence the birth of Broadcaster. Broadcaster enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public. Users can also report on things that need government intervention",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rogerjw/Broadcaster.git"
+  },
+  "author": "Roger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rogerjw/Broadcaster/issues"
+  },
+  "homepage": "https://github.com/Rogerjw/Broadcaster#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
