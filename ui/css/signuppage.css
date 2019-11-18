@@ -5,19 +5,23 @@ ul{
     padding: 0;
 }
 
-
-.loginbox{
+#main{
+    display: flex;
+    justify-content: center;
+    height: calc(100% - 35px);
+}
+.signupbox{
     width: 320px;
-    height: 420px;
+    height: 650px;
     background: #35424a;
     color: #fff;
-    top: 50%;
+    top: 65%;
     left: 50%;
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-65%,-50%);
     box-sizing: border-box;
-    padding: 70px 30px;
-    padding-bottom: 50px;
+    padding: 50px 30px; 
+    margin-bottom:45px; 
 }
 
 .avatar{
@@ -29,25 +33,25 @@ ul{
     left: calc(50% - 50px);
 }
 
-h1{
+.avatar h1{
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
     font-size: 22px;
 }
 
-.loginbox p{
+.signupbox p{
     margin: 0;
     padding: 0;
     font-weight: bold;
 }
 
-.loginbox input{
+.signupbox input{
     width: 100%;
     margin-bottom: 20px;
 }
 
-.loginbox input[type="email"], input[type="password"]
+.signupbox input[type="email"], input[type="password"], input[type ="text"],input[type = "number"] 
 {
     border: none;
     border-bottom: 1px solid #fff;
@@ -57,7 +61,7 @@ h1{
     color: #fff;
     font-size: 16px;
 }
-.loginbox input[type="submit"]
+.signupbox input[type="submit"]
 {
     border: none;
     outline: none;
@@ -67,28 +71,16 @@ h1{
     font-size: 18px;
     border-radius: 20px;
 }
-.loginbox input[type="submit"]:hover
+.signupbox input[type="submit"]:hover
 {
     cursor: pointer;
     background: #ffc107;
     color: #35424a;
 }
-.loginbox a{
-    text-decoration: none;
-    font-size: 12px;
-    line-height: 20px;
-    color: darkgrey;
-}
 
-.loginbox a:hover
-{
-    color: #ffc107;
-}
-#admin a{
-    color: tomato;
-    font-weight: bold;
-    font-size: 20px;
-}
+
+
+
 
 
 
