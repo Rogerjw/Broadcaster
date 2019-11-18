@@ -6,7 +6,7 @@ ul{
     margin:0;
     padding: 0;
   }
-html,body{
+body{
     height: 100vh;
     background: url(../img/backgroundImage.jpg);
     background-size: cover;
@@ -14,6 +14,8 @@ html,body{
 body{
     margin: 0;
     padding: 0;
+    padding-top:60px;
+    padding-bottom: 60px;
     font: 15px/1.5 Arial, Helvetica, sans-serif;
 }
 .container{
@@ -24,9 +26,11 @@ header{
     color: white;
     margin-top: 0px;
     min-height: 40px;
-    margin-bottom:0;
+    padding-bottom:0;
     background-color: #35424a;
     top: 0%;
+    width:100%;
+    position:fixed;
 }
 header a{
     color: white;
