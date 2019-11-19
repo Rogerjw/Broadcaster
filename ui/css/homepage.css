@@ -7,7 +7,9 @@ ul{
     min-height: 383px;
     text-align: center;
     color: white;
-    padding-top: 8%;  
+    padding-top: 5%;  
+    padding-left:50px;
+    padding-right: 100px;
 }
 #description h1{
     margin-top: 0px;
