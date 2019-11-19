@@ -21,7 +21,7 @@
                               <i class="fa fa-arrow-down"></i></li>
                             <div id="myDropdown" class="dropdown-content">
                             <a href="userPage.html">Dashboard</a>
-                            <a href="homepage.html"><span class="highlight">logout</span> </a>
+                            <a href="../index.html"><span class="highlight">logout</span> </a>
                             </div>
                             </div>
                         </ul>
@@ -77,9 +77,14 @@
                             <textarea placeholder="write a redflag"></textarea>
                             <button class="editTable">post</button>
                           </div>
-                          <input type="file" class="input" name="image" accept="image/*" placeholder="image">
-                          <input type="file" class="input" name="video" accept="video/*">
-                        </div>	
+                          <div class="file-img">
+                            <p> image: </p>
+                            <input type="file" class="input" name="image" accept="image/*" multiple="multiple">
+                            </div>
+                            <div class="file-vid">
+                              <p>video: </p>
+                              <input type="file" class="input" name="video" accept="video/*" multiple="multiple">
+                            </div>	
                 </aside> 
               </section>      
         </div>
