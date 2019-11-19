@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../css/adminPage.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <title>BroadCaster | Admin</title>
+    </head>
+    <body>
+        <div class = "container">
+            <div id="main">
+        <header>
+             
+                <div id = "branding"><h1><span class ="highlight">B</span>road<span class ="highlight">C</span>aster</h1></div>
+                    <nav>  
+                        <ul>
+                            <li><a href="../index.html"><i class="fa fa-home"></i>HOME</a> </li>
+                            <li class="current"><a href="adminPage.html">ADMIN</a> </li>
+                            <li><a href="">NEWS</a> </li>
+                        </ul>
+                    </nav>
+                
+        </header>
+        <div class="tab">
+                <button class="tablinks"  onclick="openService(event, 'redflag')" >Red Flag</button>
+                <button class="tablinks"  onclick="openService(event, 'Intervention')">Intervention</button>
+        </div>
+              
+        <div id="redflag" class="tabcontent">
+                <table>
+                    <caption><span>RedFlag</caption>
+                    <thead>
+                        <th> N</th>
+                        <th> Title</th>
+                        <th> Author</th>
+                        <th colspan="3"> Status</th>
+                        
+                    </thead>       
+                    <tbody>
+                        <tr>
+                            <td> 1</td>
+                            <td> this is the first post</td>
+                            <td> Roger</td>
+                            <td><a href="" class="reject">reject</a> </td>
+                            <td><a href="" class="draft">draft</a></td>
+                            <td><a href="" class="resolve">resolve</a></td>
+                            
+                        </tr> 
+                        <tr>
+                            <td> 2</td>
+                            <td> this is the second post</td>
+                            <td> Muhire</td>
+                            <td><a href="" class="reject">reject</a> </td>
+                            <td><a href="" class="draft">draft</a></td>
+                            <td><a href="" class="resolve">resolve</a></td>
+                        </tr>  
+                    </tbody>    
+                </table>
+                <button  class="viewAll" onclick="location.href='adminPageRedflag.html';">view All posts</button>
+                
+        </div>
+              
+        <div id="Intervention" class="tabcontent">
+                <table>
+                        <caption><span>Intervention</caption>
+                        <thead>
+                            <th> N</th>
+                            <th> Title</th>
+                            <th> Author</th>
+                            <th colspan="3"> Status</th>
+                            
+                        </thead>       
+                        <tbody>
+                            <tr>
+                                <td> 1</td>
+                                <td> this is the first post</td>
+                                <td> Roger</td>
+                                <td><a href="" class="reject">reject</a> </td>
+                                <td><a href="" class="draft">draft</a></td>
+                                <td><a href="" class="resolve">resolve</a></td>
+                                
+                            </tr> 
+                            <tr>
+                                <td> 2</td>
+                                <td> this is the second post</td>
+                                <td> Muhire</td>
+                                <td><a href="" class="reject">reject</a> </td>
+                                <td><a href="" class="draft">draft</a></td>
+                                <td><a href="" class="resolve">resolve</a></td>
+                            </tr>  
+                        </tbody>
+                        
+                    </table>
+                    <button class="viewAll" onclick="location.href='adminPageIntervention.html';">view All posts</button>
+        </div>
+        </div>
+        </div>
+        <footer><p>Copyright &copy;2019 BroadCaster </p></footer>
+        <script src="../script/service.js"></script>
+    </body>
+
+</html>
