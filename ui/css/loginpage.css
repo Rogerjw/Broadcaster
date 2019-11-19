@@ -8,7 +8,7 @@ ul{
 
 .loginbox{
     width: 320px;
-    height: 420px;
+    height: 480px;
     background: #35424a;
     color: #fff;
     top: 50%;
@@ -47,7 +47,7 @@ h1{
     margin-bottom: 20px;
 }
 
-.loginbox input[type="email"], input[type="password"]
+.loginbox input[type="email"], input[type="password"], input[type="text"]
 {
     border: none;
     border-bottom: 1px solid #fff;

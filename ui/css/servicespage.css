@@ -98,6 +98,7 @@
   max-width: 550px;
   margin: 0 0 40px 0;
   padding: 30px;
+  padding-bottom:20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   background-color: #e6e6e6;
@@ -110,7 +111,7 @@
  .file-img{
    display: flex;
    flex-direction: row;
-   
+   margin-top:10px;
  }
  .file-vid{
   display: flex;
@@ -172,4 +173,20 @@ ul#services li{
    cursor: pointer;
    background: #ffc107;
    color: #35424a;
+}
+.info{
+  display:flex;
+  margin-top:10px;
+  flex-direction:column;
+}
+.info a{
+  clear:none;
+  text-decoration:none;
+}
+#location{
+  width:120px;
+}
+#btnloc{
+  margin-top:10px;
+  width : 60px;
 }

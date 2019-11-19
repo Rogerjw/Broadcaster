@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <script src="../script/service.js"></script>
         <title>BroadCaster | services</title>
     </head>
     <body>
@@ -67,25 +69,38 @@
                 </article>
         
                 <aside id="sidebar"> 
-                        <div class="contact-form">
+                    <div class="contact-form">
+                      
+                      <div class="input-fields">
+                        <input type="text" class="input" placeholder="Email Address">
+                        <input type="text" class="input" placeholder="Title">
+                        <input type="date" class="input">
+                      </div>
+                      
+                      
+              
+                      <div class="info">
+                          <p>Lat Long Coordinates:</p>
                           
-                          <div class="input-fields">
-                            <input type="text" class="input" placeholder="Email Address">
-                            <input type="text" class="input" placeholder="Title">
-                          </div>
-                          <div class="msg">
-                            <textarea placeholder="write a redflag"></textarea>
+                          <button onclick="getLocation()" class="editTable">Get</button>
+                          <p id="location"></p>
+                          &nbsp;&nbsp;&nbsp;&nbsp;<a  href="map.html"><i class='fas fa-map-marker-alt' style='font-size:24px;color:rgb(212, 23, 23)'></i>
+                            <span >view location on the map</span></a>
+                            
+                      </div>
+                      <div class="file-img">
+                        <p> image: </p>
+                        <input type="file" name="image" accept="image/*" multiple="multiple">
+                        </div>
+                        <div class="file-vid">
+                          <p>video: </p>
+                          <input type="file"  name="video" accept="video/*" multiple="multiple">
+                        </div>
+                        <div class="msg">
+                            <textarea placeholder="write an intervention"></textarea>
                             <button class="editTable">post</button>
-                          </div>
-                          <div class="file-img">
-                            <p> image: </p>
-                            <input type="file" class="input" name="image" accept="image/*" multiple="multiple">
-                            </div>
-                            <div class="file-vid">
-                              <p>video: </p>
-                              <input type="file" class="input" name="video" accept="video/*" multiple="multiple">
-                            </div>	
-                </aside> 
+                          </div>	
+            </aside>
               </section>      
         </div>
               
@@ -120,34 +135,43 @@
                 </article>
         
                 <aside id="sidebar"> 
-                        <div class="contact-form">
-                          <div class="input-fields">
-                            <input type="text" class="input" placeholder="Email Address">
-                            <input type="text" class="input" placeholder="Title">
-                           
-                          </div>
-                          <div class="msg">
+                    <div class="contact-form">
+                      
+                      <div class="input-fields">
+                        <input type="text" class="input" placeholder="Email Address">
+                        <input type="text" class="input" placeholder="Title">
+                        <input type="date" class="input">
+                      </div>
+                      
+                      
+              
+                      <div class="info">
+                          <p>Lat Long Coordinates:</p>
+                          
+                          <button onclick="getLocation()" class="editTable">Get</button>
+                          <p id="location"></p>
+                          &nbsp;&nbsp;&nbsp;&nbsp;<a  href="map.html"><i class='fas fa-map-marker-alt' style='font-size:24px;color:rgb(212, 23, 23)'></i>
+                            <span >view location on the map</span></a>
+                            
+                      </div>
+                      <div class="file-img">
+                        <p> image: </p>
+                        <input type="file" name="image" accept="image/*" multiple="multiple">
+                        </div>
+                        <div class="file-vid">
+                          <p>video: </p>
+                          <input type="file"  name="video" accept="video/*" multiple="multiple">
+                        </div>
+                        <div class="msg">
                             <textarea placeholder="write an intervention"></textarea>
                             <button class="editTable">post</button>
-                          </div>
-                          <div class="file-img">
-                          <p> image: </p>
-                          <input type="file" class="input" name="image" accept="image/*" multiple="multiple">
-                          </div>
-                          <div class="file-vid">
-                            <p>video: </p>
-                            <input type="file" class="input" name="video" accept="video/*" multiple="multiple">
-                          </div>
-                          
-                          
-                          
-                        </div>	
-                </aside> 
+                          </div>	
+            </aside> 
               </section>    
         </div>
         
         <footer><p>Copyright &copy;2019 BroadCaster </p></footer>
-        <script src="../script/service.js"></script>
+        
     </body>
 
 </html>

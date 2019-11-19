@@ -25,8 +25,13 @@
     <div class="loginbox">
     <img src="../img/avatar.png" class="avatar">
         <h1>Login Here</h1>
-        <form action="servicespage.html"> 
-            
+        <form action="servicespage.html" id="frm"> 
+           
+            <select name="thelist" onChange="combo(this, 'theinput')">
+            <option>citizen</option>
+            <option>admin</option>
+            </select>
+            <input type="text" id="theinput" name="theinput" value="citizen"/>
             <p>Username</p>
             <input type="email" name="" placeholder="Enter Username">
             <p>Password</p>
@@ -41,4 +46,17 @@
     </div>
     <footer><p>Copyright &copy;2019 BroadCaster </p></footer>
 </body>
+<script>function combo(thelist, theinput) {
+    theForm = document.getElementById("frm");
+    theinput = document.getElementById(theinput);
+    var idx = thelist.selectedIndex;
+    var content = thelist.options[idx].innerHTML;
+    theinput.value = content;
+    if(theinput.value==='admin'){
+        theForm.action = "adminPage.html";
+    }else
+    {
+        theForm.action = "servicespage.html";
+    }
+}</script>
 </html>

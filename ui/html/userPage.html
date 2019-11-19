@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/userPage.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="../script/service.js"></script> 
+        <title>BroadCaster | user</title>
+    </head>
+    <body>
+        <div class = "container">
+        <header>
+             
+                <div id = "branding"><h1><span class ="highlight">B</span>road<span class ="highlight">C</span>aster</h1></div>
+                    <nav>  
+                        <ul>
+                            <li><a href="../index.html"><i class="fa fa-home"></i>HOME</a> </li>
+                            <li class="current"><a href="userPage.html">DASHBOARD</a> </li>
+                            <li><a href="servicespage.html">SERVICES</a> </li>
+                        </ul>
+                    </nav>
+                
+        </header>
+        <div class="tab">
+                <button class="tablinks"  onclick="openService(event, 'redflag')" >Red Flag</button>
+                <button class="tablinks"  onclick="openService(event, 'Intervention')">Intervention</button>
+        </div>
+              
+        <div id="redflag" class="tabcontent">
+                <section id="main">
+                          <article id="main-col">
+                            <h1 class="page-title">RedFlag</h1>
+                            <ul id="services">
+                              <li>
+                                <h3 class ="title">first post</h3>
+                                <img src="../img/traffic-police.jpg" alt="">
+                                <p>a police officer asked me to bribe him...</p>
+                                <p class="foot">status: resolved &emsp; &emsp; author:roger <button class="editTable">delete</button>
+                                  <button class="editTable">edit</button></p>
+          
+                              </li>
+                              <li>
+                                <h3 class ="title">second post</h3>
+                                <img src="../img/traffic-police.jpg" alt="">
+                                <p>i was asked to pay some pot-de vin to get a job .</p>
+                                <p class="foot">status: draft&emsp; &emsp; author:roger <button class="editTable">delete</button>
+                                  <button class="editTable">edit</button></p>
+                              </li>
+                              <li>
+                                <h3 class ="title">third post</h3>
+                                <img src="../img/traffic-police.jpg" alt="">
+                                <p>last night,when i was driving a police officer arrested me...</p>
+                                <p class="foot">status: rejected&emsp; &emsp;author:roger <button class="editTable">delete</button>
+                                  <button class="editTable">edit</button></p>
+                              </li>
+                            </ul>
+                          </article>
+                  
+                          <aside id="sidebar">
+                            <div class="dark">
+                              <h3>Stats</h3>
+                              <div class="statusCount">
+                                    <p>number of resolved redflag: 3 </p>
+                                    <p>number of rejected redflag: 4 </p>
+                                    <p>number of under-investigation redflag: 1 </p>
+                            </div>
+                            </div>
+                          </aside> 
+                      </section>
+                
+                
+        </div>
+              
+        <div id="Intervention" class="tabcontent">
+                <section id="main">
+                        <article id="main-col">
+                          <h1 class="page-title">Intervention</h1>
+                          <ul id="services">
+                            <li>
+                              <h3 class ="title">first post</h3>
+                              <img src="../img/traffic-police.jpg" alt="">
+                              <p>a police officer asked me to bribe him...</p>
+                              <p class="foot">status: resolved &emsp; &emsp; author:roger <button class="editTable">delete</button>
+                                <button class="editTable">edit</button></p>
+        
+                            </li>
+                            <li>
+                              <h3 class ="title">second post</h3>
+                              <img src="../img/traffic-police.jpg" alt="">
+                              <p>i was asked to pay some pot-de vin to get a job .</p>
+                              <p class="foot">status: draft&emsp; &emsp; author:roger <button class="editTable">delete</button>
+                                <button class="editTable">edit</button></p>
+                            </li>
+                            <li>
+                              <h3 class ="title">third post</h3>
+                              <img src="../img/traffic-police.jpg" alt="">
+                              <p>last night,when i was driving a police officer arrested me...</p>
+                              <p class="foot">status: rejected&emsp; &emsp;author:roger <button class="editTable">delete</button>
+                                <button class="editTable">edit</button></p>
+                            </li>
+                          </ul>
+                        </article>
+                
+                        <aside id="sidebar">
+                          <div class="dark">
+                            <h3>Stats</h3>
+                            <div class="statusCount">
+                                    <p>number of resolved Intervention: 1 </p>
+                                    <p>number of rejected Intervention: 3 </p>
+                                    <p style="font-size: 18px;">number of under-investigation Intervention: 3 </p>
+                          </div>
+                          </div>
+                        </aside> 
+                    </section>
+            <div class="statusCount">
+                   
+            </div>
+            
+        </div>
+        
+        </div>
+        <footer><p>Copyright &copy;2019 BroadCaster </p></footer>
+        
+    </body>
+</html>
