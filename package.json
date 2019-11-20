@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "engines": {
+    "node":"10.16.3"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@hapi/joi": "^16.1.7",
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "config": "^3.2.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.2.2",
+    "nodemon": "^1.19.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node ./server/server.js",
+    "dev": "node_modules/.bin/nodemon ./server/server.js --exec babel-node --"
+  },
+  "author": "",
+  "license": "ISC"
+}
