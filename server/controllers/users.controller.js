@@ -89,6 +89,19 @@ class UsersController{
         data: redflags,
         });
       }
+      getSpecificRedflag(req, res){
+        const redflag = redflags.find((item) => item.id.toString() === req.params.id);
+        if (!redflag) {
+          return res.status(404).send({
+            success: 404,
+            message: 'The red-flag does not exist, please check well the entered id',
+          });
+        }
+        return res.status(200).send({
+          status: 200,
+         data: redflags,
+        });
+      }
 }
 const usersController = new UsersController();
 export default usersController;
