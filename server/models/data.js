@@ -5,6 +5,7 @@ export const users = [
     'Muhire',
     'Roger',
     'rogermuhire@gmail.com',
+    'muhireroger',
     '0781870110',
     'rogerjw',
   ),
