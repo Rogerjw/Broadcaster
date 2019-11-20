@@ -1,5 +1,7 @@
 import User from '../models/user.model';
 import { users } from '../models/data';
+import Redflag from '../models/redflag.model';
+import { redflags } from '../models/data';
 import Joi from '@hapi/joi';
 import jwt from 'jsonwebtoken';
 
@@ -81,9 +83,12 @@ class UsersController{
           message: 'incorrect email or password',
         });
       }
-
-      
-
+      fetchAllRedFlags(req,res){
+        return res.status(200).send({
+        status: 200,
+        data: redflags,
+        });
+      }
 }
 const usersController = new UsersController();
 export default usersController;
