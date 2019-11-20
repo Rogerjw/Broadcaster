@@ -1,5 +1,5 @@
 class Redflag {
-    constructor(id, createdOn, createdBy, title, type, location, status = 'draft', images, videos, comment) {
+    constructor(id, createdOn, createdBy, title, type = 'redflag', location, status = 'draft', images, videos, comment) {
       this.id = id;
       this.createdOn = createdOn;
       this.createdBy = createdBy;
