@@ -7,4 +7,5 @@ router.get('/api/v1/redflags/:id',redflagController.getSpecificRedflag);
 router.post('/api/v1/redflags',redflagController.createRedflag);
 router.patch('/api/v1/redflags/:id/location',redflagController.editLocation);
 router.patch('/api/v1/redflags/:id/comment',redflagController.editComment);
+router.delete('/api/v1/redflags/:id',redflagController.deleteRedflag);
 export default router;
