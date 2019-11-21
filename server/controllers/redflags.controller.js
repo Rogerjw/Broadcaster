@@ -73,7 +73,7 @@ class RedflagsController{
           });
         }
 
-        redflags[index].location = req.params.location;
+        redflags[index].location = req.body.location;
         return res.status(200).json({
           status: 200,
           data: {
@@ -88,7 +88,7 @@ class RedflagsController{
         },
       });
         
-    }
+   
 //     return res.status(401).json({
 //       status: 401,
 //       data: {
@@ -96,6 +96,42 @@ class RedflagsController{
 //       },
 //     });
 //  // }
+      }
+    editComment(req, res){
+  //    if (req.user.type === 'citizen') {
+        const index = redflags.findIndex((item) => item.id.toString() === req.params.id);
+        if (index > -1) {
+          if (redflags[index].status != 'draft') {
+            return res.status(404).json({
+              status: 404,
+              data: {
+                message: 'you are not allowed to edit a red-flag which is under-investigation'
+              },
+            });
+          }
+  
+          redflags[index].comment = req.body.comment;
+          return res.status(200).json({
+            status: 200,
+            data: {
+              message: 'Updated red-flag record’s comment'
+            },
+          });
+        }
+        return res.status(404).json({
+          status: 404,
+          data: {
+            message: 'red-flag not found'
+          },
+        });
+         //     return res.status(401).json({
+//       status: 401,
+//       data: {
+//         message: 'you do not have this privilege'
+//       },
+//     });
+//  // } 
+      }
 };
 const redflagsController = new RedflagsController();
 export default redflagsController;
