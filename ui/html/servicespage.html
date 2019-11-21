@@ -83,7 +83,7 @@
                           <p>Lat Long Coordinates:</p>
                           
                           <button onclick="getLocation()" class="editTable">Get</button>
-                          <p id="location"></p>
+                          <p id="demo"></p>
                           &nbsp;&nbsp;&nbsp;&nbsp;<a  href="map.html"><i class='fas fa-map-marker-alt' style='font-size:24px;color:rgb(212, 23, 23)'></i>
                             <span >view location on the map</span></a>
                             
@@ -149,7 +149,7 @@
                           <p>Lat Long Coordinates:</p>
                           
                           <button onclick="getLocation()" class="editTable">Get</button>
-                          <p id="location"></p>
+                          <p id="demo"></p>
                           &nbsp;&nbsp;&nbsp;&nbsp;<a  href="map.html"><i class='fas fa-map-marker-alt' style='font-size:24px;color:rgb(212, 23, 23)'></i>
                             <span >view location on the map</span></a>
                             
@@ -171,7 +171,22 @@
         </div>
         
         <footer><p>Copyright &copy;2019 BroadCaster </p></footer>
-        
+        <script>
+          var x = document.getElementById("demo");
+          
+          function getLocation() {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+              x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+          }
+          
+          function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude + 
+            "<br>Longitude: " + position.coords.longitude;
+          }
+          </script>
     </body>
 
 </html>

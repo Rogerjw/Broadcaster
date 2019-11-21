@@ -46,7 +46,7 @@ class UsersController{
         }
        })
       };
-      loginUser(req,res){
+    loginUser(req,res){
         const schema =  Joi.object({
           email: Joi.string().min(6).required().email(),
           password: Joi.string().min(5).required()
