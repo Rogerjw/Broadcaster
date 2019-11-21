@@ -9,6 +9,7 @@ export const users = [
     'muhireroger',
     '0781870110',
     'rogerjw',
+    'admin'
   ),
 ];
 
