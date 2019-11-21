@@ -3,7 +3,8 @@ import { users } from '../models/data';
 import Redflag from '../models/redflag.model';
 import { redflags } from '../models/data';
 import Joi from '@hapi/joi';
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'
+
 class RedflagsController{
       fetchAllRedFlags(req,res){
         return res.status(200).send({
@@ -21,7 +22,7 @@ class RedflagsController{
         }
         return res.status(200).send({
           status: 200,
-         data: redflags,
+         data: redflag
         });
       }
       createRedflag(req,res){
@@ -39,45 +40,46 @@ class RedflagsController{
             res.status(400).send(result.error.details[0].message);
             return;
           }
-    const redflag = new Redflag(
+      const redflag = new Redflag(
       redflags.length + 1,
       req.body.createdOn,
-      users.find((user) => user.email === 'rogermuhire@gmail.com').id,
+      users.find((user) => user.email === jwt.verify(req.header('token'),'jwtPrivateKey').email).id,
       req.body.title,
       req.body.type,
       req.body.location,
       req.body.status,
       req.body.images,
       req.body.videos,
-      req.body.comment,
-    );
-    redflags.push(redflag);
-    return res.status(201).send({
+      req.body.comment);
+      redflags.push(redflag);
+      return res.status(201).send({
       status: 201,
       data: {
         id: redflag.id,
         message: 'Created redflag record'
       },
-    });
+      });
       }
       editLocation(req, res){
-//    if (req.user.type === 'citizen') {
-      const index = redflags.findIndex((item) => item.id.toString() === req.params.id);
-      if (index > -1) {
-        if (redflags[index].status != 'draft') {
-          return res.status(404).json({
-            status: 404,
+      const  user = users.find((user) => user.email === jwt.verify(req.header('token'),'jwtPrivateKey').email);
+      if (user.type === 'citizen') {
+      const redflag = redflags.find((item) => item.id.toString() === req.params.id);
+      if (redflag) {
+        if (redflag.status != 'draft') {
+          return res.status(401).json({
+            status: 401,
             data: {
               message: 'you are not allowed to edit a red-flag which is under-investigation'
             },
           });
         }
 
-        redflags[index].location = req.body.location;
+        redflag.location = req.body.location;
         return res.status(200).json({
           status: 200,
           data: {
-            message: 'Updated red-flag record’s location'
+            id: redflag.id,
+            message: 'Updated red-flag record’s location',
           },
         });
       }
@@ -87,34 +89,37 @@ class RedflagsController{
           message: 'red-flag not found'
         },
       });
-        
-   
-//     return res.status(401).json({
-//       status: 401,
-//       data: {
-//         message: 'you do not have this privilege'
-//       },
-//     });
-//  // }
+      }
+      return res.status(401).json({
+        status: 401,
+        data: {
+          message: 'you must be a citizen to edit the location'
+        },
+      });
+    
       }
       editComment(req, res){
-  //    if (req.user.type === 'citizen') {
-        const index = redflags.findIndex((item) => item.id.toString() === req.params.id);
-        if (index > -1) {
-          if (redflags[index].status != 'draft') {
-            return res.status(404).json({
-              status: 404,
+        const  user = users.find((user) => user.email === jwt.verify(req.header('token'),'jwtPrivateKey').email);
+        if (user.type === 'citizen') {
+        const redflag = redflags.find((item) => item.id.toString() === req.params.id);
+        if (redflag) {
+          if (redflag.status != 'draft') {
+            return res.status(401).json({
+              status: 401,
               data: {
                 message: 'you are not allowed to edit a red-flag which is under-investigation'
               },
             });
           }
-  
-          redflags[index].comment = req.body.comment;
+          redflag.title = req.body.title;
+          redflag.type = req.body.type;
+          redflag.comment = req.body.comment;
+          redflag.location = req.body.location;
           return res.status(200).json({
             status: 200,
             data: {
-              message: 'Updated red-flag record’s comment'
+              id: redflag.id,
+              message: 'Updated red-flag record’s comment',
             },
           });
         }
@@ -124,32 +129,36 @@ class RedflagsController{
             message: 'red-flag not found'
           },
         });
-         //     return res.status(401).json({
-//       status: 401,
-//       data: {
-//         message: 'you do not have this privilege'
-//       },
-//     });
-//  // } 
+        }
+        return res.status(401).json({
+          status: 401,
+          data: {
+            message: 'you must be a citizen to edit the comment'
+          },
+        });
+      
       }
       deleteRedflag(req, res){
-        const index = redflags.findIndex((item) => item.id.toString() === req.params.id);
-        if (index > -1) {
-          if (redflags[index].status != 'draft') {
-            return res.status(404).json({
-              status: 404,
+        const  user = users.find((user) => user.email === jwt.verify(req.header('token'),'jwtPrivateKey').email);
+        if (user.type === 'citizen') {
+        const redflag = redflags.find((item) => item.id.toString() === req.params.id);
+        if (redflag) {
+          if (redflag.status != 'draft') {
+            return res.status(401).json({
+              status: 401,
               data: {
-                message: 'You are not allowed to delete redflag under-investigation',
+                message: 'you are not allowed to delete a red-flag which is under-investigation'
               },
             });
           }
-    
-          redflags.splice(index, 1);
-          return res.status(200).send({
+          redflags.splice(redflag,1);
+          return res.status(200).json({
             status: 200,
             data: {
+              id: redflag.id,
               message: 'red-flag record has been deleted',
-            }
+              data: redflags
+            },
           });
         }
         return res.status(404).json({
@@ -158,7 +167,16 @@ class RedflagsController{
             message: 'red-flag not found'
           },
         });
-      }
-};
+        }
+        return res.status(401).json({
+          status: 401,
+          data: {
+            message: 'you must be a citizen to delete a redflag record'
+          },
+        });
+    
+
+      };
+}
 const redflagsController = new RedflagsController();
 export default redflagsController;

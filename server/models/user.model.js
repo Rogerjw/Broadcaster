@@ -1,4 +1,4 @@
-import { threadId } from "worker_threads";
+
 
 class User {
     constructor( id, firstname, lastname, email, password, PhoneNumber, username, type = 'citizen') {
