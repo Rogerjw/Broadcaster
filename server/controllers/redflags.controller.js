@@ -5,7 +5,7 @@ import { redflags } from '../models/data';
 import Joi from '@hapi/joi';
 import jwt from 'jsonwebtoken';
 class RedflagsController{
-    fetchAllRedFlags(req,res){
+      fetchAllRedFlags(req,res){
         return res.status(200).send({
         status: 200,
         data: redflags,
@@ -59,8 +59,8 @@ class RedflagsController{
         message: 'Created redflag record'
       },
     });
-  }
-  editLocation(req, res){
+      }
+      editLocation(req, res){
 //    if (req.user.type === 'citizen') {
       const index = redflags.findIndex((item) => item.id.toString() === req.params.id);
       if (index > -1) {
@@ -97,7 +97,7 @@ class RedflagsController{
 //     });
 //  // }
       }
-    editComment(req, res){
+      editComment(req, res){
   //    if (req.user.type === 'citizen') {
         const index = redflags.findIndex((item) => item.id.toString() === req.params.id);
         if (index > -1) {
@@ -131,6 +131,33 @@ class RedflagsController{
 //       },
 //     });
 //  // } 
+      }
+      deleteRedflag(req, res){
+        const index = redflags.findIndex((item) => item.id.toString() === req.params.id);
+        if (index > -1) {
+          if (redflags[index].status != 'draft') {
+            return res.status(404).json({
+              status: 404,
+              data: {
+                message: 'You are not allowed to delete redflag under-investigation',
+              },
+            });
+          }
+    
+          redflags.splice(index, 1);
+          return res.status(200).send({
+            status: 200,
+            data: {
+              message: 'red-flag record has been deleted',
+            }
+          });
+        }
+        return res.status(404).json({
+          status: 404,
+          data: {
+            message: 'red-flag not found'
+          },
+        });
       }
 };
 const redflagsController = new RedflagsController();
