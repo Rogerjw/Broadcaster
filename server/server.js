@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(userRouter);
 app.use(redflagRouter);
 app.listen(PORT, () => console.log(`listening on ${PORT}...`));
+export default app;
 
 
 
