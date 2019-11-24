@@ -65,7 +65,7 @@ class RedflagsController{
       if (user.type === 'citizen') {
       const redflag = redflags.find((item) => item.id.toString() === req.params.id);
       if (redflag) {
-        if (redflag.status != 'draft') {
+        if (req.body.status != 'draft') {
           return res.status(401).json({
             status: 401,
             data: {
@@ -96,14 +96,13 @@ class RedflagsController{
           message: 'you must be a citizen to edit the location'
         },
       });
-    
       }
       editComment(req, res){
         const  user = users.find((user) => user.email === jwt.verify(req.header('token'),'jwtPrivateKey').email);
         if (user.type === 'citizen') {
         const redflag = redflags.find((item) => item.id.toString() === req.params.id);
         if (redflag) {
-          if (redflag.status != 'draft') {
+          if (req.body.status != 'draft') {
             return res.status(401).json({
               status: 401,
               data: {
@@ -136,14 +135,13 @@ class RedflagsController{
             message: 'you must be a citizen to edit the comment'
           },
         });
-      
       }
       deleteRedflag(req, res){
         const  user = users.find((user) => user.email === jwt.verify(req.header('token'),'jwtPrivateKey').email);
         if (user.type === 'citizen') {
         const redflag = redflags.find((item) => item.id.toString() === req.params.id);
         if (redflag) {
-          if (redflag.status != 'draft') {
+          if (req.body.status != 'draft') {
             return res.status(401).json({
               status: 401,
               data: {
@@ -174,8 +172,6 @@ class RedflagsController{
             message: 'you must be a citizen to delete a redflag record'
           },
         });
-    
-
       };
 }
 const redflagsController = new RedflagsController();

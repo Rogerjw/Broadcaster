@@ -42,7 +42,7 @@ class UsersController{
           email : user.email,
           password : user.password,
           PhoneNumber : user.PhoneNumber,
-          username : user.username,
+          username : user.username
         }
        })
       };
