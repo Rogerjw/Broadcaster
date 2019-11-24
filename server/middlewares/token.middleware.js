@@ -13,14 +13,14 @@ const verifyToken = (req, res, next) => {
 
   try {
     const verified = jwt.verify(token, 'jwtPrivateKey');
-    const isUserValid = users.find((user) => user.email === verified.email);
-    if (!isUserValid) {
+    const validUser = users.find((user) => user.email === verified.email);
+    if (!validUser) {
       return res.status(400).send({
         status: 400,
         message: 'Invalid token!'
       });
     }
-    req.user = isUserValid;
+    req.user = validUser;
     next();
   } catch (error) {
     return res.status(400).send({

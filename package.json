@@ -26,11 +26,15 @@
     "nodemon": "^1.19.4",
     "nyc": "^14.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "coveralls": "^3.0.8"
+  },
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register --timeout 10000 --exit  ./server/tests/*.test.js",
+    "test": "nyc --reporter=html --reporter=text mocha --require @babel/register ./server/tests/*.test.js --timeout 10000 --exit  ",
     "start": "babel-node --experimental-worker ./server/server.js",
-    "dev": "node_modules/.bin/nodemon --experimental-worker ./server/server.js --exec babel-node --"
+    "dev": "node_modules/.bin/nodemon --experimental-worker ./server/server.js --exec babel-node --",
+    "build": "rm -rf ./build && babel -d ./build ./server -s",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "",
   "license": "ISC"
