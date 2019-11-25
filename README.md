@@ -88,9 +88,9 @@ start local server of application on `PORT 5000`
 ### API URL
 Now, to run your app locally and access resources, we will have to use the  endpoint URL below as an illustration.
 ` Example http://localhost:5000/api/v1/auth/signup `
-> http://localhost:4000/api/v1/ 
+> http://localhost:5000/api/v1/ 
 or
-`https://broadcaster-rogerjw.herokuapp.com/api/v1/auth/signup`
+https://broadcaster-rogerjw.herokuapp.com/api/v1/auth/signup
 ### Test App
 The app is designed with Test Driven Development(TDD). To see how it works, run the command below in your terminal.
 >npm test
