@@ -21,7 +21,8 @@ body{
   
  
   .tab button:hover {
-    background-color: #ffc107;
+    background-color: tomato;
+    color:fff;
   }
   
  
@@ -29,6 +30,10 @@ body{
     background-color: #f1f1f1;
     border-bottom:none;
   }
+  .tab button.active:hover{
+    color: tomato;
+  }
+  
   
  
   .tabcontent {

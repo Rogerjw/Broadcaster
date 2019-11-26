@@ -31,7 +31,8 @@ ul{
     color:#ffffff;
 }
 #button_1:hover{
-    background: #ffc107;
+    color:tomato;
+    background-color: #fff;
 }
 #description p1 a{
     font-size: 15px;
@@ -39,7 +40,12 @@ ul{
 }
 #description p1 a:hover{
     font-size: 15px;
-    color:#ffc107;
+    color:#fff;
 }
+@media screen and (max-width: 540px){
+    #description {
+        margin-top: 10%;
+    }
 
+}
 
