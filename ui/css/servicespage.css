@@ -59,7 +59,7 @@
   
  
   .tab button:hover {
-    background-color: #ffc107;
+    background-color: tomato;
   }
   
  
@@ -96,7 +96,7 @@
  .contact-form{
   display: flex;
   max-width: 550px;
-  margin: 0 0 40px 0;
+  margin: 10px 0 40px 0;
   padding: 30px;
   padding-bottom:20px;
   border-radius: 5px;
@@ -153,9 +153,11 @@ article#main-col{
 ul#services li{
   list-style: none;
   padding:5px;
-  border: #cccccc solid 1px;
-  margin-bottom:5px;
-  background:#e6e6e6;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  background-color: #e6e6e6;
+  margin-bottom:20px;
+  margin-top:2px;
 }
 .editTable{
   margin-left: 0px;
@@ -169,10 +171,10 @@ ul#services li{
  color: #fff;
 }
 
-.editTable:hover{
+.editTable:hover, .postbtn:hover{
    cursor: pointer;
-   background: #ffc107;
-   color: #35424a;
+   background: #fff;
+   color: tomato;
 }
 .info{
   display:flex;
@@ -190,3 +192,24 @@ ul#services li{
   margin-top:10px;
   width : 60px;
 }
+.postbtn{
+  height: 40px;
+  width: 200px;
+  background: tomato;
+  color: #fff;
+}
+@media screen and (max-width: 800px){
+  header{
+    display: flex;
+    flex-direction: column;
+}
+header li{ 
+    display:block;   
+    margin-left: 35%;
+}
+h1{
+    text-align: center;
+}
+
+}
+
