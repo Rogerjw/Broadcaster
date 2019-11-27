@@ -5,11 +5,7 @@ ul{
     padding: 0;
 }
 
-#main{
-    display: flex;
-    justify-content: center;
-    height: calc(100% - 35px);
-}
+
 .signupbox{
     width: 320px;
     height: 650px;
@@ -74,10 +70,28 @@ ul{
 .signupbox input[type="submit"]:hover
 {
     cursor: pointer;
-    background: #ffc107;
-    color: #35424a;
+    background: #fff;
+    color: tomato;
 }
+@media screen and (max-width: 540px){
 
+    .signupbox{
+        height: 100%;
+        width: 100%;
+        margin-right: 0;
+        margin-left: 15%;
+    }
+
+    .signupbox input, .signupbox p{
+        text-align: center;
+    }  
+    body{
+        padding-bottom: 50px;
+    }
+    .avatar {
+        margin-top: -10%;
+    }
+}
 
 
 
