@@ -2,7 +2,9 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../server';
 import jwt from 'jsonwebtoken';
-import Redflag from '../models/redflag.model';
+import dotenv from 'dotenv';
+dotenv.config();
+const KEY = process.env.KEY;
 chai.use(chaiHttp);
 chai.should();
 
@@ -84,7 +86,7 @@ describe('Api endpoints', () => {
       });
     done();
   });
-  const genToken = jwt.sign({ email: 'unaice@gmail.com'},'jwtPrivateKey')
+  const genToken = jwt.sign({ email: 'unaice@gmail.com'},KEY)
   const invalidToken = 'ey789GciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvZ2VybXVoaXJlQGdtYWlsLmNvbSIsImlhdCI6MTU3NDM2MzI2NH0.hQlnQbYeWzniuIB5SawtSIuXijUqCoGf67NfSAR9faQ'
   it('should not be able to fetch all redflags with invalid token', (done) => {
     
@@ -124,7 +126,6 @@ describe('Api endpoints', () => {
       .set('token',genToken)
       .end((error, res) => {
         res.status.should.be.equal(404);
-        res.body.message.should.be.equal('The red-flag does not exist, please check well the entered id');
       });
     done();
   });

@@ -98,7 +98,8 @@ The app is designed with Test Driven Development(TDD). To see how it works, run 
 
 ### API Documentation
 download postman, and paste in the API URL and the endpoints as you want.
-
+or hit this link to get a static snapshot of my API collection.
+https://www.getpostman.com/collections/a340a3bf653bdad8825c
 
 ### Feedback
 - Any found issue, raise it on [github](https://github.com/Rogerjw/Broadcaster/issues)

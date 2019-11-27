@@ -1,7 +1,9 @@
 import User from '../models/user.model';
 import { users } from '../models/data';
 import jwt from 'jsonwebtoken';
-
+import dotenv from 'dotenv';
+dotenv.config();
+const KEY = process.env.KEY;
 class UsersController{ 
     createUser (req, res){
         const user = new User(
@@ -14,36 +16,21 @@ class UsersController{
           req.body.username
         );
        users.push(user);
-       const genToken = jwt.sign({ email: user.email},'jwtPrivateKey');
+       const genToken = jwt.sign({ email: user.email},KEY);
        return res.status(201).send({
         status: 201,
         message: 'User created successfully',
         token:genToken,
-         data: {
-          id : user.id,
-          firstname : user.firstname,
-          lastname : user.lastname,
-          email : user.email,
-          password : user.password,
-          PhoneNumber : user.PhoneNumber,
-          username : user.username
-        }
-       })
-      };
+         data: user
+      });
+    }
     loginUser(req,res){
-          const genToken = jwt.sign({ email: req.body.email},'jwtPrivateKey');
+          const genToken = jwt.sign({ email: req.body.email},KEY);
           return res.status(200).send({
             status: 200,
             message: 'User is successfully logged in',
             token: genToken,
-            data: {
-              id : req.body.id,
-              firstname : req.body.firstname,
-              lastname : req.body.lastname,
-              email : req.body.email,
-              PhoneNumber : req.body.PhoneNumber,
-              username : req.body.username,
-            },
+            data: req.body
           });
       }
      
