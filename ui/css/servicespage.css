@@ -159,7 +159,7 @@ ul#services li{
   margin-bottom:20px;
   margin-top:2px;
 }
-.editTable{
+.editTable, #deleteBtn{
   margin-left: 0px;
   height: 20px;
   width: 80px;
@@ -167,14 +167,18 @@ ul#services li{
  border-radius:5px;
  margin-bottom: 20;
  color: rgba(0,0,0,0.3);
- background: tomato;
+ background: rgb(243, 142, 124);
  color: #fff;
 }
 
-.editTable:hover, .postbtn:hover{
+.editTable:hover, .postbtn:hover, #deleteBtn:hover{
    cursor: pointer;
    background: #fff;
    color: tomato;
+}
+#deleteBtn{
+ background: rgb(85, 17, 5);
+ color: #fff;
 }
 .info{
   display:flex;
