@@ -3,7 +3,7 @@ import { users } from '../models/data';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
-const KEY = process.env.KEY;
+const KEY = process.env.KEY ;
 class UsersController{ 
     createUser (req, res){
         const user = new User(
@@ -30,7 +30,7 @@ class UsersController{
             status: 200,
             message: 'User is successfully logged in',
             token: genToken,
-            data: req.body
+            data: req.body.email
           });
       }
      
