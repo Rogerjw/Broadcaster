@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv';
 
 dotenv.config();
-const KEY = process.env.KEY;
+const KEY = process.env.KEY ;
 class RedflagsController{
       fetchAllRedFlags(req, res){
         return res.status(200).send({
@@ -66,7 +66,7 @@ class RedflagsController{
           });
       }
       deleteRedflag(req, res){
-        redflags.splice(req.redflag,1);
+        redflags.splice(req.redflag.id-1,1);
           return res.status(200).json({
             status: 200,
             data: {

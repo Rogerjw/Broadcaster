@@ -4,7 +4,7 @@ import Joi from '@hapi/joi';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
-const KEY = process.env.KEY;
+const KEY = process.env.KEY ;
 export const validateNewUser = (req,res, next) =>{
   const ExistingUser = users.find((user) => user.email === req.body.email);
   if (ExistingUser) {
@@ -94,6 +94,13 @@ export const validateRedflagRequest = (req, res, next) => {
 }
 export const findRedflag = (req, res, next) =>{
   try{
+    const schema =  Joi.object({
+      id: Joi.number().required().min(1)
+    });
+    const result = schema.validate(req.params);
+    if(result.error){
+      return res.status(400).send(result.error.details[0].message);
+    }
     const redflag = redflags.find((item) => item.id.toString() === req.params.id);
     if (redflag) {
       req.redflag = redflag;

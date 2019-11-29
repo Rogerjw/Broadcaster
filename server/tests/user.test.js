@@ -280,7 +280,7 @@ describe('Api endpoints', () => {
       status: 'rejected'
     };
     chai.request(server)
-      .delete('/api/v1/redflags/2')
+      .delete('/api/v1/redflags/1')
       .set('token',genToken)
       .send(rredflag)
       .end((error, res) => {
