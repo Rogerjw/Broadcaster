@@ -75,3 +75,40 @@
      
      margin: 10;
  }
+ @media screen and (max-width: 900px){
+  header{
+    display: flex;
+    flex-direction: column;
+  }
+header li{ 
+    display:block;   
+    margin-left: 45%;
+}
+h1{
+    text-align: center;
+}
+ul#services li{
+  width: 100%;
+  margin-left: 20%;
+}
+aside#sidebar {
+  width: 100%;
+}
+.contact-form {
+  margin-left: 5%;
+}
+.tab{
+  margin-top: 80px;
+}
+.tab button {
+  background-color: #ccc;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 50%;
+  margin-top: 0;
+  width:100%;
+}
+
+}
