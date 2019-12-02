@@ -162,11 +162,13 @@ ul#services li{
 }
 .editTable, #deleteBtn{
   margin-left: 0px;
-  height: 20px;
+  height: 6%;
   width: 80px;
  box-shadow: 0 0 10px rgba(0,0,0,0.3);
  border-radius:5px;
  margin-bottom: 20;
+ margin-top: 5px;
+ margin-left: 20px;
  color: rgba(0,0,0,0.3);
  background: rgb(243, 142, 124);
  color: #fff;
