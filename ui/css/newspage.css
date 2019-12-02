@@ -1,4 +1,8 @@
-
+.content_wrapper{
+width: 65%;
+margin: auto;
+margin-top: 4%;
+}
   .page-title{
     color:#fff;
     background-color: tomato;
@@ -14,9 +18,7 @@
     }
     
     article#main-col{
-      width:65%;
-      margin:50px 0px 0px 50px;
-      
+      width:100%;
     }
    
     .title{
