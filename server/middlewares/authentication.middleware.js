@@ -6,20 +6,21 @@ import dotenv from 'dotenv';
 dotenv.config();
 const KEY = process.env.KEY ;
 export const validateNewUser = (req,res, next) =>{
-  const ExistingUser = users.find((user) => user.email === req.body.email);
+  
   const schema =  Joi.object({
-    id: Joi.number().min(16).max(16).required(),
+    id: Joi.number().min(16).required(),
     firstname: Joi.string().min(4).required(),
     lastname: Joi.string().min(4).required(),
     email: Joi.string().min(6).required().email(),
     password: Joi.string().min(3).required(),
-    PhoneNumber: Joi.number().min(10).max(10).required(),
+    PhoneNumber: Joi.number().min(9).required(),
     username: Joi.string().min(3).required()
     });
     const result = schema.validate(req.body);
     if(result.error){
       return res.status(400).json(result.error.details[0].message);
     }
+    const ExistingUser = users.find((user) => user.email === req.body.email);
     if (ExistingUser) {
       return res.status(409).json({
         status: 409,

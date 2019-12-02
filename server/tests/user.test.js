@@ -14,9 +14,9 @@ describe('Api endpoints', () => {
       id: 1234567890123456,
       firstname: 'muhire',
       lastname: 'roger',
-      email: 'rogermuhi@gmail.com',
+      email: 'muhireroger@gmail.com',
       password: 'ajkldfjla',
-      PhoneNumber: 99305657657,
+      PhoneNumber: 781870110 ,
       username: 'rogerjw',
     };
     chai.request(server)
