@@ -6,26 +6,28 @@ import dotenv from 'dotenv';
 dotenv.config();
 const KEY = process.env.KEY ;
 export const validateNewUser = (req,res, next) =>{
-  const ExistingUser = users.find((user) => user.email === req.body.email);
-  if (ExistingUser) {
-    return res.status(409).send({
-      status: 409,
-      message: 'Email already exists',
-    }); 
-  }
+  
   const schema =  Joi.object({
     id: Joi.number().min(16).required(),
     firstname: Joi.string().min(4).required(),
     lastname: Joi.string().min(4).required(),
     email: Joi.string().min(6).required().email(),
     password: Joi.string().min(3).required(),
-    PhoneNumber: Joi.number().min(10).required(),
+    PhoneNumber: Joi.number().min(9).required(),
     username: Joi.string().min(3).required()
     });
     const result = schema.validate(req.body);
     if(result.error){
-      return res.status(400).send(result.error.details[0].message);
+      return res.status(400).json(result.error.details[0].message);
     }
+    const ExistingUser = users.find((user) => user.email === req.body.email);
+    if (ExistingUser) {
+      return res.status(409).json({
+        status: 409,
+        message: 'Email already exists',
+      }); 
+    }
+    
   return next();
 }
 export const validateExistingAccount = (req, res, next) => { 
@@ -35,14 +37,14 @@ export const validateExistingAccount = (req, res, next) => {
   });
   const result = schema.validate(req.body);
   if(result.error){
-    return res.status(400).send(result.error.details[0].message);
+    return res.status(400).json(result.error.details[0].message);
   }
   const existingUser = users.find((user) => user.email === req.body.email);
   const isPasswordCorrect=()=>{
     if(req.body.password === existingUser.password) return true;
   }
   if (!(existingUser && isPasswordCorrect())) {
-    return res.status(404).send({
+    return res.status(404).json({
       status: 404,
       message: 'incorrect email or password',
     });
@@ -53,7 +55,7 @@ export const verifyToken = (req, res, next) => {
   const token = req.header('token');
 
   if (!token) {
-    return res.status(401).send({
+    return res.status(401).json({
       status: 401,
       message: 'Please sign in first.',
     });
@@ -63,14 +65,14 @@ export const verifyToken = (req, res, next) => {
     const verified = jwt.verify(token, KEY);
     const validUser = users.find((user) => user.email === verified.email);
     if (!validUser) {
-      return res.status(400).send({
+      return res.status(400).json({
         status: 400,
         message: 'Invalid token!'
       });
     }
     return next();
   } catch (error) {
-    return res.status(400).send({
+    return res.status(400).json({
       status: 400,
       message: error.message
     });
@@ -88,7 +90,7 @@ export const validateRedflagRequest = (req, res, next) => {
     });
     const result = schema.validate(req.body);
     if(result.error){
-      return res.status(400).send(result.error.details[0].message);
+      return res.status(400).json(result.error.details[0].message);
     }
     return next();
 }
@@ -99,7 +101,7 @@ export const findRedflag = (req, res, next) =>{
     });
     const result = schema.validate(req.params);
     if(result.error){
-      return res.status(400).send(result.error.details[0].message);
+      return res.status(400).json(result.error.details[0].message);
     }
     const redflag = redflags.find((item) => item.id.toString() === req.params.id);
     if (redflag) {
@@ -113,7 +115,7 @@ export const findRedflag = (req, res, next) =>{
       },
     });
   }catch (error) {
-    return res.status(400).send({
+    return res.status(400).json({
       status: 400,
       message: error.message
     });
@@ -134,7 +136,7 @@ export const findUserType = (req, res, next) =>{
       },
     });
   }catch (error) {
-    return res.status(400).send({
+    return res.status(400).json({
       status: 400,
       message: error.message
     });

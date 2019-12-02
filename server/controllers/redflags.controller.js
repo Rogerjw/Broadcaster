@@ -8,14 +8,15 @@ import dotenv from 'dotenv';
 dotenv.config();
 const KEY = process.env.KEY ;
 class RedflagsController{
+  
       fetchAllRedFlags(req, res){
-        return res.status(200).send({
+        return res.status(200).json({
         status: 200,
         data: redflags,
         });
       }
       getSpecificRedflag(req, res){
-        return res.status(200).send({
+        return res.status(200).json({
           status: 200,
          data: req.redflag
         });  
@@ -33,7 +34,7 @@ class RedflagsController{
       req.body.videos,
       req.body.comment);
       redflags.push(redflag);
-      return res.status(201).send({
+      return res.status(201).json({
       status: 201,
       data: {
         id: redflag.id,
