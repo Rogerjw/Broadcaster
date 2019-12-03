@@ -12,7 +12,7 @@ class RedflagsController{
       fetchAllRedFlags(req, res){
         return res.status(200).json({
         status: 200,
-        data: redflags,
+        data: Redflag.getAllRedflag(),
         });
       }
       getSpecificRedflag(req, res){
@@ -22,25 +22,30 @@ class RedflagsController{
         });  
       }
       async createRedflag(req,res){   
-      const redflag = new Redflag(
-      1,
-      req.body.createdBy,
-      req.user.id,
-      req.body.title,
-      req.body.type,
-      req.body.location,
-      req.body.status,
-      req.body.images,
-      req.body.videos,
-      req.body.comment);
-      const addedRedflag = await Redflag.addRedflag(redflag).rows[0];
-      return res.status(201).json({
-      status: 201,
-      data: {
-        id: addedRedflag.id,
-        message: 'Created redflag record'
-      },
-      });
+        try{
+          const redflag = new Redflag(
+            1,
+            '12/12/12',
+            '124',
+            req.body.title,
+            req.body.type,
+            req.body.location,
+            req.body.status,
+            req.body.images,
+            req.body.videos,
+            req.body.comment);
+            const redflagDb = await Redflag.addRedflag(redflag);
+            return res.status(201).json({
+            status: 201,
+            data: {
+              id: redflag.id,
+              message: 'Created redflag record'
+            },
+            });
+        }catch(error){
+          return res.status(400).json(error.details[0].message);
+        }
+      
       }
       editLocation(req, res){
         req.redflag.location = req.body.location;

@@ -17,5 +17,8 @@ class Redflag {
       return pool.query(queries.addRedflag,[redflag.createdOn,redflag.createdBy,redflag.title,redflag.type,
         redflag.location,redflag.status,redflag.images,redflag.videos,redflag.comment]);
     }
+    static getAllRedflag(){
+      return pool.query(queries.getAllRedflags);
+    }
   }
   export default Redflag;

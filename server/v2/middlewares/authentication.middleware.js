@@ -79,7 +79,8 @@ export const verifyToken = async(req, res, next) => {
 
   try {
     const verified = jwt.verify(token, KEY);
-    const validUser = await User.findUser(verified.email).rows[0];
+    const user = await User.findUser(verified.email);
+    const validUser = user.rows[0];
     if (!validUser) {
       return res.status(400).json({
         status: 400,
