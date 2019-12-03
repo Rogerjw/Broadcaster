@@ -36,7 +36,7 @@
   "scripts": {
     "createTable": "node --require @babel/polyfill --require @babel/register ./server/v2/models/createTables.models.js",
     "deleteTable": "node --require @babel/polyfill --require @babel/register ./server/v2/models/deleteTables.models.js",
-    "test": "cross-env NODE_ENV=test npm run deleteTable && cross-env NODE_ENV=test npm run createTable && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha  --require @babel/polyfill --require @babel/register ./server/v2/tests/*.test.js --timeout 100000 --exit  ",
+    "test": "cross-env NODE_ENV=test npm run deleteTable && cross-env NODE_ENV=test npm run createTable && cross-env NODE_ENV=test nyc --reporter=html --reporter=text mocha  --require @babel/polyfill --require @babel/register ./server/v2/tests/*.test.js --timeout 10000 --exit  ",
     "start": "babel-node --experimental-worker ./server/server.js",
     "dev": "node_modules/.bin/nodemon --experimental-worker ./server/v2/server.js --exec babel-node --",
     "build": "rm -rf ./build && babel -d ./build ./server -s",

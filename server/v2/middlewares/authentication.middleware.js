@@ -3,7 +3,7 @@ import { redflags } from '../models/data';
 import Joi from '@hapi/joi';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import user from '../models/user.model';
+import User from '../models/user.model';
 dotenv.config();
 const KEY = process.env.KEY ;
 export const validateNewUser = async (req,res, next) =>{
@@ -22,7 +22,7 @@ export const validateNewUser = async (req,res, next) =>{
         return res.status(400).json(result.error.details[0].message);
       }
       
-      const ExistingUser = await user.findUser(req.body.email);
+      const ExistingUser = await User.findUser(req.body.email);
       if (ExistingUser.rowCount === 1) {
         return res.status(409).json({
           status: 409,
@@ -36,29 +36,39 @@ export const validateNewUser = async (req,res, next) =>{
   }
   
 }
-export const validateExistingAccount = (req, res, next) => { 
-  const schema =  Joi.object({
-    email: Joi.string().min(6).required().email(),
-    password: Joi.string().min(5).required()
-  });
-  const result = schema.validate(req.body);
-  if(result.error){
-    return res.status(400).json(result.error.details[0].message);
-  }
-  const existingUser = users.find((user) => user.email === req.body.email);
-  const isPasswordCorrect=()=>{
-    if(req.body.password === existingUser.password) return true;
-  }
-  if (!(existingUser && isPasswordCorrect())) {
-    return res.status(404).json({
-      status: 404,
-      message: 'incorrect email or password',
+export const validateExistingAccount = async(req, res, next) => { 
+  try{
+    const schema =  Joi.object({
+      email: Joi.string().min(6).required().email(),
+      password: Joi.string().min(5).required()
     });
+    const result = schema.validate(req.body);
+    if(result.error){
+      return res.status(400).json(result.error.details[0].message);
+    }
+    const user = await User.findUser(req.body.email);
+    const existingUser = user.rows[0];
+    const isPasswordCorrect = () =>{
+      if(req.body.password === existingUser.password) return true;
+    }
+    if (!((user.rowCount === 1) && isPasswordCorrect())) {
+      return res.status(404).json({
+        status: 404,
+        message: 'incorrect email or password',
+      });
+    }
+    
+      return next();
+    
+    
+  }catch(error){
+    next(error);
   }
-  return next();
+  
 };
-export const verifyToken = (req, res, next) => {
-  const token = req.header('token');
+export const verifyToken = async(req, res, next) => {
+  try{
+    const token = req.header('token');
 
   if (!token) {
     return res.status(401).json({
@@ -69,7 +79,7 @@ export const verifyToken = (req, res, next) => {
 
   try {
     const verified = jwt.verify(token, KEY);
-    const validUser = users.find((user) => user.email === verified.email);
+    const validUser = await User.findUser(verified.email).rows[0];
     if (!validUser) {
       return res.status(400).json({
         status: 400,
@@ -83,22 +93,31 @@ export const verifyToken = (req, res, next) => {
       message: error.message
     });
   }
+  }catch(error){
+    next(error);
+  }
+  
 };
 export const validateRedflagRequest = (req, res, next) => {
-  const schema =  Joi.object({
-    title: Joi.string().min(4).required(),
-    type: Joi.string().min(4).required(),
-    comment: Joi.string().min(10).required(),
-    location: Joi.string().min(10).required(),
-    status: Joi.string().min(3).required(),
-    images: Joi.array().required(),
-    videos: Joi.array().required()
-    });
-    const result = schema.validate(req.body);
-    if(result.error){
-      return res.status(400).json(result.error.details[0].message);
-    }
-    return next();
+  try{
+    const schema =  Joi.object({
+      title: Joi.string().min(4).required(),
+      type: Joi.string().min(4).required(),
+      comment: Joi.string().min(10).required(),
+      location: Joi.string().min(10).required(),
+      status: Joi.string().min(3).required(),
+      images: Joi.array().required(),
+      videos: Joi.array().required()
+      });
+      const result = schema.validate(req.body);
+      if(result.error){
+        return res.status(400).json(result.error.details[0].message);
+      }
+      return next();
+  }catch(error){
+    next(error);
+  }
+ 
 }
 export const findRedflag = (req, res, next) =>{
   try{
@@ -128,9 +147,9 @@ export const findRedflag = (req, res, next) =>{
   }
   
 }
-export const findUserType = (req, res, next) =>{
+export const findUserType = async(req, res, next) =>{
   try{
-    const  user = users.find((user) => user.email === jwt.verify(req.header('token'),KEY).email);
+    const user = await User.findUser(jwt.verify(req.header('token'),KEY).email).rows[0];
     if (user.type === 'citizen') {
        req.user = user
       return next();

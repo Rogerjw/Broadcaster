@@ -23,7 +23,7 @@ class UsersController{
          data: user
       });
     }
-    loginUser(req,res){
+     loginUser(req,res){
           const genToken = jwt.sign({ email: req.body.email},KEY);
           return res.status(200).json({
             status: 200,

@@ -8,11 +8,12 @@ const KEY = process.env.KEY;
 const { expect } = chai;
 chai.use(chaiHttp);
 const mochaAsync = (fn) => {
-  return async() => {
+  return async(done) => {
       try {
           await fn();
+          done();
       } catch (err) {
-          console.error(err);
+          done(err);
       }
   };
 };

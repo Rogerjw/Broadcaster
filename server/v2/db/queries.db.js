@@ -32,10 +32,16 @@
         users (id, firstname, lastname, email, password, phonenumber, username, type)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     RETURNING *`;
+    const addRedflag = `INSERT INTO redflag(createdOn, createdBy, title, type, location, status, images, videos, comment)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    RETURNING *`;
+    const getAllRedflags = 'SELECT * from redflag';
 export default {
     createUserTable,
     createRedflagTable,
     deleteAllTables,
     findUser,
-    addUser
+    addUser,
+    addRedflag,
+    getAllRedflags
 }

@@ -21,10 +21,10 @@ class RedflagsController{
          data: req.redflag
         });  
       }
-      createRedflag(req,res){   
+      async createRedflag(req,res){   
       const redflag = new Redflag(
-      redflags.length + 1,
-      req.body.createdOn,
+      1,
+      req.body.createdBy,
       req.user.id,
       req.body.title,
       req.body.type,
@@ -33,11 +33,11 @@ class RedflagsController{
       req.body.images,
       req.body.videos,
       req.body.comment);
-      redflags.push(redflag);
+      const addedRedflag = await Redflag.addRedflag(redflag).rows[0];
       return res.status(201).json({
       status: 201,
       data: {
-        id: redflag.id,
+        id: addedRedflag.id,
         message: 'Created redflag record'
       },
       });
