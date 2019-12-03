@@ -1,7 +1,7 @@
 
   const createUserTable = `CREATE TABLE IF NOT EXISTS
   users(
-    id SERIAL PRIMARY KEY,
+    id VARCHAR(128) PRIMARY KEY,
     firstname VARCHAR(128) NOT NULL,
     lastname VARCHAR(128) NOT NULL,
     email VARCHAR(128) NOT NULL,
@@ -26,9 +26,16 @@
     const deleteAllTables = `
       DROP TABLE IF EXISTS
           users, redflag`;
-    
+    const findUser = `select * from users where email= $1`;
+    const addUser = `
+    INSERT INTO
+        users (id, firstname, lastname, email, password, phonenumber, username, type)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    RETURNING *`;
 export default {
     createUserTable,
     createRedflagTable,
-    deleteAllTables
+    deleteAllTables,
+    findUser,
+    addUser
 }

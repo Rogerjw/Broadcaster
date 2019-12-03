@@ -3,32 +3,38 @@ import { redflags } from '../models/data';
 import Joi from '@hapi/joi';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import user from '../models/user.model';
 dotenv.config();
 const KEY = process.env.KEY ;
-export const validateNewUser = (req,res, next) =>{
+export const validateNewUser = async (req,res, next) =>{
+  try{
+    const schema =  Joi.object({
+      id: Joi.number().min(1).required(),
+      firstname: Joi.string().min(4).required(),
+      lastname: Joi.string().min(4).required(),
+      email: Joi.string().min(6).required().email(),
+      password: Joi.string().min(3).required(),
+      PhoneNumber: Joi.number().min(9).required(),
+      username: Joi.string().min(3).required()
+      });
+      const result = schema.validate(req.body);
+      if(result.error){
+        return res.status(400).json(result.error.details[0].message);
+      }
+      
+      const ExistingUser = await user.findUser(req.body.email);
+      if (ExistingUser.rowCount === 1) {
+        return res.status(409).json({
+          status: 409,
+          message: 'Email already exists',
+        }); 
+      }
+      
+    return next();
+  }catch(error){
+    next(error);
+  }
   
-  const schema =  Joi.object({
-    id: Joi.number().min(16).required(),
-    firstname: Joi.string().min(4).required(),
-    lastname: Joi.string().min(4).required(),
-    email: Joi.string().min(6).required().email(),
-    password: Joi.string().min(3).required(),
-    PhoneNumber: Joi.number().min(9).required(),
-    username: Joi.string().min(3).required()
-    });
-    const result = schema.validate(req.body);
-    if(result.error){
-      return res.status(400).json(result.error.details[0].message);
-    }
-    const ExistingUser = users.find((user) => user.email === req.body.email);
-    if (ExistingUser) {
-      return res.status(409).json({
-        status: 409,
-        message: 'Email already exists',
-      }); 
-    }
-    
-  return next();
 }
 export const validateExistingAccount = (req, res, next) => { 
   const schema =  Joi.object({
