@@ -4,13 +4,18 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 class RedflagsController{
-  
+
       async fetchAllRedFlags(req, res){
-        const redflagsDb = await Redflag.getAllRedflag();
+        try{
+          const redflagsDb = await Redflag.getAllRedflag();
         return res.status(200).json({
         status: 200,
         data: redflagsDb.rows,
         });
+        }catch(error){
+          return res.status(400).json(error.message);
+        }
+        
       }
      async getSpecificRedflag(req, res){
         return res.status(200).json({
