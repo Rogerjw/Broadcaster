@@ -26,5 +26,11 @@ class Redflag {
     static deleteOneRedflag(id){
       return pool.query(queries.deleteOneRedflag,[id]);
     }
+    static editOneLocation(location,id){
+      return pool.query(queries.editOneLocation,[location,id]);
+    }
+    static editOneComment(comment,id){
+      return pool.query(queries.editOneComment,[comment,id]);
+    }
   }
   export default Redflag;

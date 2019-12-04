@@ -1,32 +1,27 @@
 
-
 import Redflag from '../models/redflag.model';
-import { redflags } from '../models/data';
-
 import dotenv from 'dotenv';
 
 dotenv.config();
-const KEY = process.env.KEY ;
 class RedflagsController{
   
       async fetchAllRedFlags(req, res){
         const redflagsDb = await Redflag.getAllRedflag();
         return res.status(200).json({
         status: 200,
-        data: redflagsDb.rows[0],
+        data: redflagsDb.rows,
         });
       }
      async getSpecificRedflag(req, res){
-      const redflagDb = await Redflag.findOneRedflag(req.params.id); 
         return res.status(200).json({
           status: 200,
-         data: redflagDb.rows[0]
+         data: req.redflag
         });  
       }
       async createRedflag(req,res){   
         try{
           const redflag = new Redflag(
-            1,
+            req.body.id,
             '12/12/12',
             '124',
             req.body.title,
@@ -45,26 +40,28 @@ class RedflagsController{
             },
             });
         }catch(error){
-          return res.status(400).json(error.details[0].message);
+          return res.status(400).json(error.message);
         }
       
       }
-      editLocation(req, res){
-        req.redflag.location = req.body.location;
-        return res.status(200).json({
-          status: 200,
-          data: {
-            id: req.redflag.id,
-            message: 'Updated red-flag record’s location',
-          },
-        });
+      async editLocation(req, res){
+        try{
+          const redflagloc = await Redflag.editOneLocation(req.body.location,req.redflag.id);
+          return res.status(200).json({
+            status: 200,
+            data: {
+              id: req.redflag.id,
+              message: 'Updated red-flag record’s location',
+            },
+          });
+        }catch(error){
+          return res.status(400).json(error.message);
+        }
+        
       
       }
-      editComment(req, res){
-        req.redflag.title = req.body.title;
-        req.redflag.type = req.body.type;
-        req.redflag.comment = req.body.comment;
-        req.redflag.location = req.body.location;
+      async editComment(req, res){
+        const redflagCom = await Redflag.editOneComment(req.body.comment,req.redflag.id);
           return res.status(200).json({
             status: 200,
             data: {
@@ -73,8 +70,9 @@ class RedflagsController{
             },
           });
       }
-      deleteRedflag(req, res){
-        redflags.splice(req.redflag.id-1,1);
+      async deleteRedflag(req, res){
+        try{
+          const redflagdel = await Redflag.deleteOneRedflag(req.redflag.id);
           return res.status(200).json({
             status: 200,
             data: {
@@ -82,6 +80,10 @@ class RedflagsController{
               message: 'red-flag record has been deleted',
             },
           });
+        }catch(error){
+          return res.status(400).json(error.message);
+        }
+          
       };
 }
 const redflagsController = new RedflagsController();

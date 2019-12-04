@@ -129,7 +129,7 @@ export const findRedflag = async  (req, res, next) =>{
     if(result.error){
       return res.status(400).json(result.error.details[0].message);
     }
-    const redflagDb = await Redflag.findRedflag(req.params.id);
+    const redflagDb = await Redflag.findOneRedflag(req.params.id);
     const redflag = redflagDb.rows[0];
     if (redflag) {
       req.redflag = redflag;

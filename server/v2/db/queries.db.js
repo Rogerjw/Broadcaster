@@ -37,7 +37,9 @@
     RETURNING *`;
     const getAllRedflags = `SELECT * FROM redflag`;
     const findOneRedflag = `SELECT * FROM redflag WHERE id = $1`;
-    const deleteOneRedflag = `DELETE FROM users WHERE id = $1`;
+    const deleteOneRedflag = `DELETE FROM redflag WHERE id = $1`;
+    const editOneLocation = `UPDATE redflag SET location = $1 WHERE id = $2`;
+    const editOneComment = `UPDATE redflag SET comment = $1 WHERE id = $2`;
 export default {
     createUserTable,
     createRedflagTable,
@@ -47,5 +49,7 @@ export default {
     addRedflag,
     getAllRedflags,
     findOneRedflag,
-    deleteOneRedflag
+    deleteOneRedflag,
+    editOneLocation,
+    editOneComment
 }
