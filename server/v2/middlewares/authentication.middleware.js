@@ -1,4 +1,4 @@
-import { users } from '../models/data';
+import Redflag from '../models/redflag.model';
 import { redflags } from '../models/data';
 import Joi from '@hapi/joi';
 import jwt from 'jsonwebtoken';
@@ -120,7 +120,7 @@ export const validateRedflagRequest = (req, res, next) => {
   }
  
 }
-export const findRedflag = (req, res, next) =>{
+export const findRedflag = async  (req, res, next) =>{
   try{
     const schema =  Joi.object({
       id: Joi.number().required().min(1)
@@ -129,7 +129,8 @@ export const findRedflag = (req, res, next) =>{
     if(result.error){
       return res.status(400).json(result.error.details[0].message);
     }
-    const redflag = redflags.find((item) => item.id.toString() === req.params.id);
+    const redflagDb = await Redflag.findRedflag(req.params.id);
+    const redflag = redflagDb.rows[0];
     if (redflag) {
       req.redflag = redflag;
       return next();
@@ -150,7 +151,8 @@ export const findRedflag = (req, res, next) =>{
 }
 export const findUserType = async(req, res, next) =>{
   try{
-    const user = await User.findUser(jwt.verify(req.header('token'),KEY).email).rows[0];
+    const userDb = await User.findUser(jwt.verify(req.header('token'),KEY).email);
+    const user = userDb.rows[0];
     if (user.type === 'citizen') {
        req.user = user
       return next();

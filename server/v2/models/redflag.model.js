@@ -20,5 +20,11 @@ class Redflag {
     static getAllRedflag(){
       return pool.query(queries.getAllRedflags);
     }
+    static findOneRedflag(id){
+      return pool.query(queries.findOneRedflag,[id]);
+    }
+    static deleteOneRedflag(id){
+      return pool.query(queries.deleteOneRedflag,[id]);
+    }
   }
   export default Redflag;

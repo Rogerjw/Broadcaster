@@ -9,16 +9,18 @@ dotenv.config();
 const KEY = process.env.KEY ;
 class RedflagsController{
   
-      fetchAllRedFlags(req, res){
+      async fetchAllRedFlags(req, res){
+        const redflagsDb = await Redflag.getAllRedflag();
         return res.status(200).json({
         status: 200,
-        data: Redflag.getAllRedflag(),
+        data: redflagsDb.rows[0],
         });
       }
-      getSpecificRedflag(req, res){
+     async getSpecificRedflag(req, res){
+      const redflagDb = await Redflag.findOneRedflag(req.params.id); 
         return res.status(200).json({
           status: 200,
-         data: req.redflag
+         data: redflagDb.rows[0]
         });  
       }
       async createRedflag(req,res){   

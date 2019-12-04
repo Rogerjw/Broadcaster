@@ -35,7 +35,9 @@
     const addRedflag = `INSERT INTO redflag(createdOn, createdBy, title, type, location, status, images, videos, comment)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING *`;
-    const getAllRedflags = 'SELECT * from redflag';
+    const getAllRedflags = `SELECT * FROM redflag`;
+    const findOneRedflag = `SELECT * FROM redflag WHERE id = $1`;
+    const deleteOneRedflag = `DELETE FROM users WHERE id = $1`;
 export default {
     createUserTable,
     createRedflagTable,
@@ -43,5 +45,7 @@ export default {
     findUser,
     addUser,
     addRedflag,
-    getAllRedflags
+    getAllRedflags,
+    findOneRedflag,
+    deleteOneRedflag
 }
