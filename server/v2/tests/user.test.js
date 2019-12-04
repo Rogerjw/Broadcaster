@@ -5,21 +5,21 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 const KEY = process.env.KEY;
-const { expect } = chai;
 chai.use(chaiHttp);
+chai.should();
 
 describe('Api endpoints', () => {
-  it('should be able to signUp',(done) => {
-      const user = {
-        id: 14,
-        firstname: 'muhire',
-        lastname: 'roger',
-        email: 'muhireroger@gmail.com',
-        password: 'ajkldfjla',
-        PhoneNumber: 781870110 ,
-        username: 'rogerjw',
-      };
-      chai.request(server)
+  it('should be able to signUp', (done) => {
+    const user = {
+      id: 1234567890123456,
+      firstname: 'muhire',
+      lastname: 'roger',
+      email: 'muhireroger@gmail.com',
+      password: 'ajkldfjla',
+      PhoneNumber: 781870110 ,
+      username: 'rogerjw',
+    };
+    chai.request(server)
       .post('/api/v2/auth/signup')
       .send(user)
       .end((error, res) => {
@@ -27,7 +27,7 @@ describe('Api endpoints', () => {
         res.body.message.should.be.equal('User created successfully');
       });
     done();
-    });
+  });
   it('should not be able to signUp with an existing email', (done) => {
     const user = {
       id: 1234567890123456,

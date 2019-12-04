@@ -5,7 +5,7 @@ import { findRedflag } from '../middlewares/authentication.middleware';
 import { validateRedflagRequest } from '../middlewares/authentication.middleware';
 import   { findUserType } from '../middlewares/authentication.middleware';
 import { ValidateRedflagChange } from '../middlewares/authentication.middleware';
-import errorHandler from '../helpers/errorHandler.helpers';
+
 const router = express.Router();
 
 router.get('/api/v2/redflags',verifyToken,redflagController.fetchAllRedFlags);
