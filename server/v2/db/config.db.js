@@ -1,13 +1,15 @@
 import { Pool } from 'pg';
 import { config } from 'dotenv';
-config();
 
+config();
+// eslint-disable-next-line import/no-mutable-exports
 let pool;
+
 if (process.env.NODE_ENV === 'test') {
   pool = new Pool({
     connectionString: process.env.DATABASE_URL_TEST,
   });
-}else{
+} else {
   pool = new Pool({
     connectionString: process.env.DATABASE_URL,
   });
