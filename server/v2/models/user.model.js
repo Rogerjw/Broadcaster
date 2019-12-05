@@ -16,7 +16,7 @@ class User {
       return pool.query(queries.findUser,[email]);
     }
     static addUser(user){
-      return pool.query(queries.addUser,[user.id,user.firstname,user.lastname,user.email,user.password,user.PhoneNumber,
+      return pool.query(queries.addUser,[user.firstname,user.lastname,user.email,user.password,user.PhoneNumber,
         user.username,user.type]);
     }
     

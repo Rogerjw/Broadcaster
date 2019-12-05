@@ -6,10 +6,10 @@ import dotenv from 'dotenv';
 import User from '../models/user.model';
 dotenv.config();
 const KEY = process.env.KEY ;
+
 export const validateNewUser = async (req,res, next) =>{
-  try{
+  
     const schema =  Joi.object({
-      id: Joi.number().min(1).required(),
       firstname: Joi.string().min(4).required(),
       lastname: Joi.string().min(4).required(),
       email: Joi.string().min(6).required().email(),
@@ -31,13 +31,10 @@ export const validateNewUser = async (req,res, next) =>{
       }
       
     return next();
-  }catch(error){
-    next(error);
   }
-  
-}
+
 export const validateExistingAccount = async(req, res, next) => { 
-  try{
+ 
     const schema =  Joi.object({
       email: Joi.string().min(6).required().email(),
       password: Joi.string().min(5).required()
@@ -59,15 +56,9 @@ export const validateExistingAccount = async(req, res, next) => {
     }
     
       return next();
-    
-    
-  }catch(error){
-    next(error);
-  }
-  
 };
 export const verifyToken = async(req, res, next) => {
-  try{
+
     const token = req.header('token');
 
   if (!token) {
@@ -77,7 +68,7 @@ export const verifyToken = async(req, res, next) => {
     });
   }
 
-  try {
+  
     const verified = jwt.verify(token, KEY);
     const user = await User.findUser(verified.email);
     const validUser = user.rows[0];
@@ -88,19 +79,10 @@ export const verifyToken = async(req, res, next) => {
       });
     }
     return next();
-  } catch (error) {
-    return res.status(400).json({
-      status: 400,
-      message: error.message
-    });
-  }
-  }catch(error){
-    next(error);
-  }
   
 };
 export const validateRedflagRequest = (req, res, next) => {
-  try{
+  
     const schema =  Joi.object({
       title: Joi.string().min(4).required(),
       type: Joi.string().min(4).required(),
@@ -115,13 +97,10 @@ export const validateRedflagRequest = (req, res, next) => {
         return res.status(400).json(result.error.details[0].message);
       }
       return next();
-  }catch(error){
-    next(error);
-  }
+  
  
 }
 export const findRedflag = async  (req, res, next) =>{
-  try{
     const schema =  Joi.object({
       id: Joi.number().required().min(1)
     });
@@ -141,16 +120,9 @@ export const findRedflag = async  (req, res, next) =>{
         message: 'red-flag not found'
       },
     });
-  }catch (error) {
-    return res.status(400).json({
-      status: 400,
-      message: error.message
-    });
-  }
   
-}
+  }
 export const findUserType = async(req, res, next) =>{
-  try{
     const userDb = await User.findUser(jwt.verify(req.header('token'),KEY).email);
     const user = userDb.rows[0];
     if (user.type === 'citizen') {
@@ -163,16 +135,10 @@ export const findUserType = async(req, res, next) =>{
         message: 'you must be a citizen'
       },
     });
-  }catch (error) {
-    return res.status(400).json({
-      status: 400,
-      message: error.message
-    });
-  }
- 
+  
 }
 export const ValidateRedflagChange = (req, res, next) => {
-  if (req.body.status != 'draft') {
+  if (req.body.status != 'pending') {
     return res.status(401).json({
       status: 401,
       data: {

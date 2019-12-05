@@ -1,7 +1,7 @@
 
   const createUserTable = `CREATE TABLE IF NOT EXISTS
   users(
-    id VARCHAR(128),
+    id SERIAL PRIMARY KEY,
     firstname VARCHAR(128) NOT NULL,
     lastname VARCHAR(128) NOT NULL,
     email VARCHAR(128) NOT NULL,
@@ -29,17 +29,17 @@
     const findUser = `select * from users where email= $1`;
     const addUser = `
     INSERT INTO
-        users (id, firstname, lastname, email, password, phonenumber, username, type)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        users (firstname, lastname, email, password, phonenumber, username, type)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *`;
     const addRedflag = `INSERT INTO redflag(createdOn, createdBy, title, type, location, status, images, videos, comment)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING *`;
     const getAllRedflags = `SELECT * FROM redflag`;
     const findOneRedflag = `SELECT * FROM redflag WHERE id = $1`;
-    const deleteOneRedflag = `DELETE FROM redflag WHERE id = $1`;
-    const editOneLocation = `UPDATE redflag SET location = $1 WHERE id = $2`;
-    const editOneComment = `UPDATE redflag SET comment = $1 WHERE id = $2`;
+    const deleteOneRedflag = `DELETE FROM redflag WHERE id = $1 RETURNING *`;
+    const editOneLocation = `UPDATE redflag SET location = $1 WHERE id = $2 RETURNING *`;
+    const editOneComment = `UPDATE redflag SET comment = $1 WHERE id = $2 RETURNING *`;
     const deleteAllvaluesRedflag = `DELETE FROM redflag`;
     const deleteAllvaluesUsers= `DELETE FROM users`;
 export default {

@@ -14,12 +14,11 @@ describe('Api endpoints', () => {
   it('should be able to signUp', async() => {
     try{
       const user = {
-        id: 123,
         firstname: 'muhire',
         lastname: 'roger',
         email: 'muhireroger@gmail.com',
         password: 'muhireroger',
-        PhoneNumber: 781870110 ,
+        PhoneNumber: '0781870110' ,
         username: 'rogerjw',
       };
       const result = await chai.request(server)
@@ -36,12 +35,11 @@ describe('Api endpoints', () => {
   it('should not be able to signUp with an existing email', async() => {
     try{
       const user = {
-        id: 34,
-        firstname: 'Uwitonze',
-        lastname: 'Naice',
+        firstname: 'muhire',
+        lastname: 'roger',
         email: 'muhireroger@gmail.com',
         password: 'muhireroger',
-        PhoneNumber: 781870110,
+        PhoneNumber: '0781870110' ,
         username: 'rogerjw',
       };
       const result = await chai.request(server)
@@ -95,7 +93,7 @@ describe('Api endpoints', () => {
         type: 'Redflag',
         comment: 'last night,i was asked to bribe a police off...',
         location: 'Latitude:-1.9570688 Longitude:30.101504',
-        status: 'draft',
+        status: 'pending',
         images: ['image.png','image.png'],
         videos: ['video.mp4','video.mp4']
       }
@@ -128,14 +126,14 @@ describe('Api endpoints', () => {
     try{
       const result = await chai.request(server)
       .get('/api/v2/redflags')
-      .set('token',invalidToken)
-      expect(result.body.status).to.equal(400)
+      .set('token',invalidToken);
+      expect(result.body.status).to.equal(500)
     }catch(error){
       console.log(error);
     }
     ;
   });
-    it('should be able to fetch all redflags', async () => {
+  it('should be able to fetch all redflags', async () => {
      try{
       const result = await chai.request(server)
         .get('/api/v2/redflags')
@@ -145,7 +143,7 @@ describe('Api endpoints', () => {
       console.log(error);
      }
       
-    });
+  });
   
   it('should be able to fetch a redflag record', async() => {
     try{
@@ -175,7 +173,7 @@ describe('Api endpoints', () => {
     try{
       const redflag = {
         location: 'Latitude:-1.9570688 Longitude:25.101504',
-        status: 'draft'
+        status: 'pending'
       };
       const result = await chai.request(server)
         .patch('/api/v2/redflags/1/location')
@@ -200,7 +198,7 @@ describe('Api endpoints', () => {
       console;log(error);
     }
   });
-  it('should be not able to update the location of a specific redflag,if status not draft', async() => {
+  it('should be not able to update the location of a specific redflag,if status not pending', async() => {
     try{
       const rredflag = {
         location: 'Latitude:-1.9570688 Longitude:25.101504',
@@ -233,7 +231,7 @@ describe('Api endpoints', () => {
     try{
       const redflag = {
         comment: 'last night,i was asked to bribe a police off...',
-        status: 'draft'
+        status: 'pending'
       };
       const result = await chai.request(server)
         .patch('/api/v2/redflags/1/comment')
@@ -259,7 +257,7 @@ describe('Api endpoints', () => {
     }
     
   });
-  it('should be not able to update the comment of a specific redflag,if status not draft', async() => {
+  it('should be not able to update the comment of a specific redflag,if status not pending', async() => {
     try{
       const rredflag = {
         comment: 'last night,i was asked to bribe a police off...',
@@ -290,7 +288,7 @@ describe('Api endpoints', () => {
    it('should be able to delete a specific redflag record', async() => {
      try{
       const redflag = {
-        status: 'draft'
+        status: 'pending'
       };
       const result = await chai.request(server)
         .delete('/api/v2/redflags/1')
@@ -323,7 +321,7 @@ describe('Api endpoints', () => {
         type: 'Redflag',
         comment: 'last night,i was asked to bribe a police off...',
         location: 'Latitude:-1.9570688 Longitude:30.101504',
-        status: 'draft',
+        status: 'pending',
         images: ['image.png','image.png'],
         videos: ['video.mp4','video.mp4']
       }
@@ -337,7 +335,7 @@ describe('Api endpoints', () => {
     }
     
   });
-  it('should not be able to delete a specific redflag,if status not draft', async() => {
+  it('should not be able to delete a specific redflag,if status not pending', async() => {
     try{
 
       const rredflag = {

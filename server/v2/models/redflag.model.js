@@ -1,7 +1,7 @@
 import pool from '../db/config.db';
 import queries from '../db/queries.db'
 class Redflag {
-    constructor(id, createdOn = '12/12/12', createdBy='13', title, type = 'redflag', location, status = 'draft', images, videos, comment) {
+    constructor(id, createdOn , createdBy, title, type = 'redflag', location, status = 'pending', images, videos, comment) {
       this.id = id;
       this.createdOn = createdOn;
       this.createdBy = createdBy;
