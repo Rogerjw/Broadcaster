@@ -1,7 +1,7 @@
 
   const createUserTable = `CREATE TABLE IF NOT EXISTS
   users(
-    id VARCHAR(128) PRIMARY KEY,
+    id VARCHAR(128),
     firstname VARCHAR(128) NOT NULL,
     lastname VARCHAR(128) NOT NULL,
     email VARCHAR(128) NOT NULL,
@@ -13,7 +13,7 @@
   const createRedflagTable = `CREATE TABLE IF NOT EXISTS
       redflag(
         id SERIAL PRIMARY KEY,
-        createdOn VARCHAR(128) NOT NULL,
+        createdOn TIMESTAMP NOT NULL DEFAULT NOW() NOT NULL,
         createdBy VARCHAR(128) NOT NULL,
         title VARCHAR(128) NOT NULL,
         type VARCHAR(128) NOT NULL,
@@ -40,6 +40,8 @@
     const deleteOneRedflag = `DELETE FROM redflag WHERE id = $1`;
     const editOneLocation = `UPDATE redflag SET location = $1 WHERE id = $2`;
     const editOneComment = `UPDATE redflag SET comment = $1 WHERE id = $2`;
+    const deleteAllvaluesRedflag = `DELETE FROM redflag`;
+    const deleteAllvaluesUsers= `DELETE FROM users`;
 export default {
     createUserTable,
     createRedflagTable,
@@ -51,5 +53,7 @@ export default {
     findOneRedflag,
     deleteOneRedflag,
     editOneLocation,
-    editOneComment
+    editOneComment,
+    deleteAllvaluesRedflag,
+    deleteAllvaluesUsers
 }

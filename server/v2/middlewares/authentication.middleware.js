@@ -1,5 +1,5 @@
 import Redflag from '../models/redflag.model';
-import { redflags } from '../models/data';
+import { redflags } from '../models/addValues';
 import Joi from '@hapi/joi';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';

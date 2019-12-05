@@ -27,7 +27,7 @@ class RedflagsController{
         try{
           const redflag = new Redflag(
             req.body.id,
-            '12/12/12',
+            req.body.created,
             req.user.id,
             req.body.title,
             req.body.type,
