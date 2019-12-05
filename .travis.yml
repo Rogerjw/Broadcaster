@@ -1,3 +1,7 @@
+services:
+  - postgresql
+before_script:
+  - psql -c 'CREATE DATABASE broadcaster_test;' -U postgres
 language : node_js
 node_js : 
     - "stable"
