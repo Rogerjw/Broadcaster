@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Rogerjw/Broadcaster.svg?branch=develop)](https://travis-ci.org/Rogerjw/Broadcaster)
-[![Coverage Status](https://coveralls.io/repos/github/Rogerjw/Broadcaster/badge.svg?branch=develop)](https://coveralls.io/github/Rogerjw/Broadcaster?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/Rogerjw/Broadcaster/badge.svg?branch=develop)](https://coveralls.io/github/Rogerjw/Broadcaster?branch=develop&service=github)
 [![Maintainability](https://api.codeclimate.com/v1/badges/463e688211ef7beba673/maintainability)](https://codeclimate.com/github/Rogerjw/Broadcaster/maintainability)
 # Broadcaster
 Corruption is a huge bane to Africa’s development. African countries must develop novel and localized solutions that will curb this menace, hence the birth of Broadcaster. Broadcaster enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public. Users can also report on things that need government intervention
