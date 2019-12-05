@@ -316,31 +316,53 @@ describe('Api endpoints', () => {
     }
     
   });
-  // it('should not be able to delete a specific redflag,if status not draft', async() => {
-  //   try{
-
-  //     const rredflag = {
-  //       comment: 'last night,i was asked to bribe a police off...',
-  //       status: 'rejected'
-  //     };
-  //     const result = await chai.request(server)
-  //       .delete('/api/v2/redflags/1')
-  //       .set('token',genToken)
-  //       .before()
-  //       .send(rredflag);
-  //       expect(result.body.status).to.equal(401);
-  //   }catch(error){
-  //     console.log(error);
-  //   }
+  it('should be able to create a redflag record', async () => {
+    try{
+      const redflag = {
+        title: 'Corruption',
+        type: 'Redflag',
+        comment: 'last night,i was asked to bribe a police off...',
+        location: 'Latitude:-1.9570688 Longitude:30.101504',
+        status: 'draft',
+        images: ['image.png','image.png'],
+        videos: ['video.mp4','video.mp4']
+      }
+     const result = await chai.request(server)
+        .post('/api/v2/redflags')
+        .set('token',genToken)
+        .send(redflag);
+         expect(result.body.status).to.equal(201);
+    }catch(error){
+      console.log(error);
+    }
     
-  // });
-  // it('should be not able to delete a redflag of a not found redflag', (done) => {
-  //   chai.request(server)
-  //     .delete('/api/v2/redflags/6')
-  //     .set('token', genToken)
-  //     .end((error, res) => {
-  //       res.status.should.be.equal(404);
-  //     });
-  //   done();
-  // });
+  });
+  it('should not be able to delete a specific redflag,if status not draft', async() => {
+    try{
+
+      const rredflag = {
+        comment: 'last night,i was asked to bribe a police off...',
+        status: 'rejected'
+      };
+      const result = await chai.request(server)
+        .delete('/api/v2/redflags/2')
+        .set('token',genToken)
+        .send(rredflag);
+        expect(result.body.status).to.equal(401);
+    }catch(error){
+      console.log(error);
+    }
+    
+  });
+  it('should be not able to delete a redflag of a not found redflag', async() => {
+    try{
+      const result = await chai.request(server)
+      .delete('/api/v2/redflags/99')
+      .set('token', genToken)
+      expect(result.body.status).to.equal(404);
+    }catch(error){
+      console.log(error);
+    }
+    
+  });
 });
