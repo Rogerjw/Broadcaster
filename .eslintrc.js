@@ -16,11 +16,12 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    "semi": ["error", "always"],
+    //"semi": ["error", "always"],
     "no-console" : "off",
     "no-shadow" : 0,
     "linebreak-style": 0,
     "class-methods-use-this":0,
-    "no-undef":0
+    "no-undef":0,
+    "import/no-mutable-exports":0
   },
 };

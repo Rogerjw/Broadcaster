@@ -45,13 +45,19 @@ export const validateExistingAccount = async (req, res, next) => {
   }
   const user = await User.findUser(req.body.email);
   const existingUser = user.rows[0];
+  if (user.rowCount === 0) {
+    return res.status(404).json({
+      status: 404,
+      message: 'incorrect email',
+    });
+  }
 
   const isPasswordCorrect = await bcrypt.compare(req.body.password, existingUser.password);
 
-  if (!((user.rowCount !== 0) && isPasswordCorrect)) {
+  if (!(isPasswordCorrect)) {
     return res.status(404).json({
       status: 404,
-      message: 'incorrect email or password',
+      message: 'incorrect password',
     });
   }
 
