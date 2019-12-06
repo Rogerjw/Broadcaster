@@ -1,7 +1,6 @@
 
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import server from '../server';
 import generateToken from '../helpers/generateToken';
