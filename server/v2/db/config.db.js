@@ -2,7 +2,7 @@ import { Pool } from 'pg';
 import { config } from 'dotenv';
 
 config();
-// eslint-disable-next-line import/no-mutable-exports
+
 let pool;
 
 if (process.env.NODE_ENV === 'test') {
